@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPM-Lens | Non-Technical AI Safety Pipeline Blueprint Utility</title>
+  <meta name="description" content="Translate specialized AI safety research proposals into structured, non-technical operational blueprints containing infrastructure estimates, timeline dependencies, and layperson explanations.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons for premium iconography -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header>
+    <div class="brand">
+      <div class="brand-icon">L</div>
+      <div class="brand-text">
+        <h1>RPM-Lens</h1>
+        <p>AI Safety Operations & Pipeline Planner</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-secondary" id="toggle-api-btn">
+        <i data-lucide="key"></i> API Configuration
+      </button>
+      <button class="btn btn-primary" id="export-pdf-btn">
+        <i data-lucide="printer"></i> Export Blueprint
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Grid Workspace -->
+  <main class="container">
+    
+    <!-- Left Panel: Input Control Console -->
+    <section class="sidebar">
+      
+      <!-- Preloaded Samples -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <i data-lucide="folder-open"></i> Technical Proposals
+        </div>
+        <div class="template-list" id="proposals-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Raw Technical Ingest -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <i data-lucide="file-text"></i> Custom Proposal Ingest
+        </div>
+        <div class="form-group">
+          <label for="custom-proposal-title">Project Title</label>
+          <input type="text" id="custom-proposal-title" class="form-control" placeholder="Enter proposal title...">
+        </div>
+        <div class="form-group">
+          <label for="custom-proposal-text">Raw Text Markdown</label>
+          <textarea id="custom-proposal-text" class="form-control" placeholder="Paste highly technical proposal markdown, LaTeX formulas, or code details here..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width: 100%; justify-content: center;" id="parse-proposal-btn">
+          <i data-lucide="cpu"></i> Generate Blueprint
+        </button>
+      </div>
+
+      <!-- Interactive Calculator Slider -->
+      <div class="glass-panel">
+        <div class="panel-title">
+          <i data-lucide="calculator"></i> Cost Sandbox
+        </div>
+        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1rem;">
+          Estimate baseline hosting and execution costs using cloud instance pricing models.
+        </p>
+        <div class="slider-sandbox">
+          <div class="slider-row">
+            <label for="gpu-rate-slider">
+              <span>GPU Cluster Cost ($ / Hr)</span>
+              <span id="gpu-rate-val">$3.50</span>
+            </label>
+            <input type="range" id="gpu-rate-slider" min="1" max="15" step="0.5" value="3.5">
+          </div>
+          <div class="slider-row">
+            <label for="duration-slider">
+              <span>Run Duration (Days)</span>
+              <span id="duration-val">5 Days</span>
+            </label>
+            <input type="range" id="duration-slider" min="1" max="30" step="1" value="5">
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 0.75rem; border-top: 1px dashed var(--border-color);">
+            <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Recalculated Cost:</span>
+            <span id="sandbox-total-cost" style="font-family: var(--font-title); font-weight: 700; color: var(--color-accent);">$420.00</span>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Right Panel: Visual Dashboard Output -->
+    <section class="dashboard">
+
+      <!-- Executive Overview -->
+      <div class="exec-header">
+        <div class="metric-card" id="metric-category-card">
+          <div class="metric-label">Research Safety Domain</div>
+          <div class="metric-value" id="meta-category">Mechanistic Interpretability</div>
+          <div class="metric-sub" id="meta-author">Dr. Elian Vance</div>
+        </div>
+        <div class="metric-card" id="metric-risk-card">
+          <div class="metric-label">Operational Risk Rating</div>
+          <div class="metric-value" id="meta-risk-level">High</div>
+          <div class="metric-sub" id="meta-risk-reason">Compute bottlenecking risks.</div>
+        </div>
+        <div class="metric-card" id="metric-cost-card">
+          <div class="metric-label">Estimated Base Compute</div>
+          <div class="metric-value" id="meta-cost">$3,450.00</div>
+          <div class="metric-sub">Subject to spot rates</div>
+        </div>
+      </div>
+
+      <!-- Detail Blueprint Grid -->
+      <div class="dashboard-grid">
+        
+        <!-- Left: Infrastructure Blueprint -->
+        <div class="glass-panel infra-card">
+          <div class="panel-title">
+            <i data-lucide="server"></i> 1. Infrastructure Requirements
+          </div>
+          <div class="infra-list">
+            <div class="infra-item">
+              <div class="infra-icon"><i data-lucide="cpu"></i></div>
+              <div class="infra-info">
+                <h5>Target Compute Setup</h5>
+                <p id="infra-compute">8x A100 (80GB VRAM) for 12 days</p>
+              </div>
+            </div>
+            <div class="infra-item">
+              <div class="infra-icon"><i data-lucide="database"></i></div>
+              <div class="infra-info">
+                <h5>Scrutiny & Storage Scratch</h5>
+                <p id="infra-storage">2.5 TB fast SSD storage</p>
+              </div>
+            </div>
+            <div class="infra-item">
+              <div class="infra-icon"><i data-lucide="link"></i></div>
+              <div class="infra-info">
+                <h5>External APIs Required</h5>
+                <p id="infra-apis">Hugging Face, Weights & Biases</p>
+              </div>
+            </div>
+            <div class="infra-item">
+              <div class="infra-icon"><i data-lucide="package"></i></div>
+              <div class="infra-info">
+                <h5>Core Software Stack</h5>
+                <p id="infra-software">PyTorch, TransformerLens, SAELens</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Timeline & Operational Gates -->
+        <div class="glass-panel gating-card">
+          <div class="panel-title">
+            <i data-lucide="milestone"></i> 2. Timeline Dependencies & Gating Actions
+          </div>
+          <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Crucial milestone gates where the RPM needs to verify project readiness before releasing compute/API resources.
+          </p>
+          <div class="timeline" id="gating-timeline">
+            <!-- Timeline nodes dynamically injected -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom: Translation Keys for Mentors -->
+      <div class="glass-panel translation-card">
+        <div class="panel-title">
+          <i data-lucide="languages"></i> 3. Non-Technical Jargon Translation Directory
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+          Translates hyper-technical code/math jargon inside the proposal into operational meanings and tracking metrics.
+        </p>
+        <div class="translation-table-wrapper">
+          <table class="translation-table">
+            <thead>
+              <tr>
+                <th style="width: 30%">Technical Term</th>
+                <th style="width: 45%">Layperson Translation</th>
+                <th style="width: 25%">Verification Metric</th>
+              </tr>
+            </thead>
+            <tbody id="translation-table-body">
+              <!-- Dynamically populated rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Optional API Config Drawer -->
+  <aside class="api-drawer" id="api-drawer">
+    <div class="api-drawer-header">
+      <h3>API Setup</h3>
+      <button class="close-btn" id="close-api-btn">&times;</button>
+    </div>
+    <p style="font-size: 0.8rem; color: var(--text-secondary);">
+      Provide an API Key if you want to use an LLM parser model to dynamically analyze completely custom proposals.
+    </p>
+    <div class="form-group">
+      <label for="api-provider">Provider</label>
+      <select id="api-provider" class="form-control">
+        <option value="gemini">Gemini API</option>
+        <option value="openai">OpenAI API</option>
+        <option value="anthropic">Anthropic API</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="api-key-input">API Secret Key</label>
+      <input type="password" id="api-key-input" class="form-control" placeholder="sk-...">
+    </div>
+    <div class="form-group">
+      <label for="model-name">Model Override</label>
+      <input type="text" id="model-name" class="form-control" value="gemini-1.5-pro">
+    </div>
+    <button class="btn btn-primary" id="save-api-config" style="justify-content: center;">
+      Save Credentials
+    </button>
+  </aside>
+
+  <!-- Load javascript files -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
