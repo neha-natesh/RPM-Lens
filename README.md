@@ -1,4 +1,4 @@
-# RPM-Lens 🔍
+# RPM-Lens 
 
 **RPM-Lens** is a highly focused visual pipeline utility designed for **Research Project Managers (RPMs)** at AI safety research institutes created using Google Anti-gravity as a prototype for work task. Since RPMs are often non-technical, they need a simple way to quickly evaluate the operational risks, compute budgets, and safety requirements of highly technical proposals without having to read dense code or mathematical proofs.
 
